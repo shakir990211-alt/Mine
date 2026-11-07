@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopora — Modern Storefront Demo</title>
+  <meta name="description" content="A responsive Shopify-style storefront demo built with HTML, CSS, and JavaScript.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">Free shipping on orders over $75 · 30-day returns · Demo storefront</div>
+
+  <header class="header">
+    <div class="container nav">
+      <button class="icon-btn mobile-only" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      <a class="logo" href="#">Shopora</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#collections">Collections</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="icon-btn cart-btn" id="cartBtn" aria-label="Open cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+    <div class="search-bar container hidden" id="searchBar">
+      <input type="search" id="searchInput" placeholder="Search products..." aria-label="Search products">
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">New Season</p>
+          <h1>Build a storefront experience customers love.</h1>
+          <p>Shopora is a responsive e-commerce demo inspired by modern storefronts. Browse products, filter collections, and try a working cart — all with plain HTML, CSS, and JavaScript.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">Shop products</a>
+            <a class="btn btn-secondary" href="#collections">View collections</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80" alt="Modern retail display">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="collections">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Collections</p>
+            <h2>Shop by category</h2>
+          </div>
+        </div>
+        <div class="collections-grid" id="collectionsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="products">
+      <div class="container">
+        <div class="section-head products-head">
+          <div>
+            <p class="eyebrow">Catalog</p>
+            <h2>Featured products</h2>
+          </div>
+          <div class="filters">
+            <select id="categoryFilter" aria-label="Filter by category">
+              <option value="all">All categories</option>
+            </select>
+            <select id="sortFilter" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container features-grid">
+        <article class="feature-card">
+          <i class="fa-solid fa-truck-fast"></i>
+          <h3>Fast fulfillment</h3>
+          <p>Clear shipping expectations and a smooth checkout flow help customers buy with confidence.</p>
+        </article>
+        <article class="feature-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Trusted experience</h3>
+          <p>Transparent pricing, product details, and return messaging build trust across the storefront.</p>
+        </article>
+        <article class="feature-card">
+          <i class="fa-solid fa-mobile-screen"></i>
+          <h3>Responsive design</h3>
+          <p>The layout adapts from desktop to mobile with accessible navigation and touch-friendly controls.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <h3>Shopora</h3>
+        <p>A Shopify-style storefront demo built with HTML, CSS, and JavaScript for learning and prototyping.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#products">All products</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">Features</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter">
+          <input type="email" placeholder="Email address" aria-label="Email address" required>
+          <button type="submit" class="btn btn-primary">Join</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-panel">
+      <div class="cart-head">
+        <h3>Your cart</h3>
+        <button class="icon-btn" id="closeCart" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total"><span>Total</span><strong id="cartTotal">$0.00</strong></div>
+        <button class="btn btn-primary full" id="checkoutBtn">Checkout (Demo)</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
